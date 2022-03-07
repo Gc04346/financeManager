@@ -6,17 +6,8 @@ import Routes from "./src/routes";
 export default function App() {
     return (
         <>
-            <StatusBar barStyle="light-content" backgroundColor="#33FFA2"/>
+            <StatusBar barStyle="light-content" backgroundColor="#42bc3f"/>
             <Routes/>
         </>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});

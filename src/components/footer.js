@@ -4,9 +4,8 @@ import { FontAwesome } from '@expo/vector-icons';
 
 const styles = StyleSheet.create({
   tabBar: {
-    flex: 1,
     flexDirection: "row",
-    backgroundColor: "#33FFA2",
+    backgroundColor: "#42bc3f",
     borderRadius: 12,
     maxHeight: 70,
   },
@@ -14,6 +13,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  container: {
+    height: 70,
+    width: 70,
+    backgroundColor: "#33FFA2",
+    zIndex: 1
+  },
+  icon: {
+    color: "#222",
+    fontSize: 28,
+    marginTop: 20,
+    marginBottom: -20,
+  },
+  text: {
+    color: "#222",
+    marginBottom: 20,
   }
 });
 
@@ -56,7 +71,9 @@ export default function NavBar({ state, descriptors, navigation }) {
         };
 
         return (
+          <View style={styles.container}>
           <TouchableOpacity
+          key={`nav-btn-${index}`}
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
@@ -65,11 +82,12 @@ export default function NavBar({ state, descriptors, navigation }) {
             onLongPress={onLongPress}
             style={styles.tabIcon}
           >
-            <FontAwesome name={navIcons[route.name]} size={24} color="black" />
-            <Text style={{ color: isFocused ? "#673ab7" : "#222" }}>
+            <FontAwesome name={navIcons[route.name]} style={{...styles.icon, transform:[{translateY:isFocused ? -35 : 0}]}} />
+            <Text style={{ ...styles.text, opacity: isFocused ? 1 : 0}}>
               {label}
             </Text>
           </TouchableOpacity>
+          </View>
         );
       })}
     </View>
