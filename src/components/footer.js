@@ -1,6 +1,33 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import { BorderShadow, BoxShadow } from "react-native-shadow" ;
+
+const shadowLeft = {
+	width:5,
+	height:25,
+	color:"#fff",
+	border:10,
+  inset: true,
+	side:"top",
+	opacity:1,
+  style: {
+    left: -5,
+  }
+}
+const shadowRight = {
+	width:5,
+	height:5,
+	color:"#fff",
+	border:5,
+	side:"top",
+  inset: true,
+	opacity:1,
+  style: {
+    right: -3,
+    position: "absolute",
+  }
+}
 
 const styles = StyleSheet.create({
   tabBar: {
@@ -36,21 +63,19 @@ const styles = StyleSheet.create({
   },
   indicatorBefore: {
     position: "absolute",
-    left: -12,
-    width: 15,
+    left: -5,
+    width: 13,
     height: 15,
-    backgroundColor: "red",
-    borderTopRightRadius: 20,
-
-    shadowColor: "#FFF",
-    shadowOffset: {width: -30, height: -30},
-    shadowOpacity: 0,
-    shadowRadius: 30,
-    elevation: 1
-    
+    backgroundColor: "#42bc3f",
+    borderTopRightRadius: 25,
   },
   indicatorAfter: {
-
+    position: "absolute",
+    right: -7,
+    width: 13,
+    height: 15,
+    backgroundColor: "#42bc3f",
+    borderTopLeftRadius: 25,
   },
   icon: {
     color: "#222",
@@ -104,11 +129,20 @@ export default function NavBar({ state, descriptors, navigation }) {
         };
 
         return (
-          <View key={`nav-btn-${index}`} style={{marginLeft: 20}}>
+          <View key={`nav-btn-${index}`} style={{ marginLeft: 20 }}>
             {/* Quadradinho verde atrás do ícone */}
             <View style={isFocused && styles.indicator} />
             <View style={styles.container}>
-              <View style={styles.indicatorBefore}/>
+              {isFocused && (
+                <BorderShadow setting={shadowLeft}>
+                  {[
+                    <View
+                      key="indicatorBefore"
+                      style={styles.indicatorBefore}
+                    />,
+                  ]}
+                </BorderShadow>
+              )}
               <TouchableOpacity
                 accessibilityRole="button"
                 accessibilityState={isFocused ? { selected: true } : {}}
@@ -129,7 +163,16 @@ export default function NavBar({ state, descriptors, navigation }) {
                   {label}
                 </Text>
               </TouchableOpacity>
-              <View style={styles.indicatorAfter}/>
+              {isFocused && (
+                <BoxShadow setting={shadowRight}>
+                {[
+                  <View
+                    key="indicatorAfter"
+                    style={styles.indicatorAfter}
+                  />,
+                ]}
+              </BoxShadow>
+              )}
             </View>
           </View>
         );
