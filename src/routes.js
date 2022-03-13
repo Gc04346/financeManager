@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NavBar from './components/footer';
 import Main from "./pages/Main";
 import RegisterExpense from './pages/RegisterExpense';
+import ExpensesDetails from './pages/ExpensesDetails';
+import Profile from './pages/Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +20,9 @@ function MyTabs() {
       })}
     >
       <Tab.Screen name="New" component={RegisterExpense} />
+      <Tab.Screen name="Details" component={ExpensesDetails} />
       <Tab.Screen name="Home" component={Main} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 }

@@ -6,7 +6,7 @@ import { BorderShadow, BoxShadow } from "react-native-shadow" ;
 const shadowLeft = {
 	width:5,
 	height:25,
-	color:"#fff",
+	color:"#b4d6bc",
 	border:10,
   inset: true,
 	side:"top",
@@ -18,7 +18,7 @@ const shadowLeft = {
 const shadowRight = {
 	width:5,
 	height:5,
-	color:"#fff",
+	color:"#b4d6bc",
 	border:5,
 	side:"top",
   inset: true,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#33FFA2",
     top: "-50%",
     borderRadius: 35,
-    borderColor: "#FFF",
+    borderColor: "#b4d6bc",
     borderWidth: 6,
     borderStyle: "solid",
   },
@@ -94,6 +94,8 @@ export default function NavBar({ state, descriptors, navigation }) {
     const navIcons = {
       Home: "home",
       New: "plus",
+      Details: "list-ul",
+      Profile: "user",
     };
   return (
     <View style={styles.tabBar}>
